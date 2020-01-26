@@ -26,8 +26,6 @@ import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 public class MovieFragment extends Fragment {
 
     private RecyclerView rvMovie;
-    private ProgressBar progressBar;
-
 
     public MovieFragment() {
         // Required empty public constructor
@@ -44,8 +42,7 @@ public class MovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvMovie = view.findViewById(R.id.rv_academy);
-        progressBar = view.findViewById(R.id.progress_bar);
+        rvMovie = view.findViewById(R.id.rv_movie);
     }
 
     @Override

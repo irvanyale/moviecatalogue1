@@ -60,7 +60,7 @@ public class MovieEntity {
         this.vote = vote;
     }
 
-    public Drawable getImagePath() {
+    public Drawable getImage() {
         return image;
     }
 

@@ -19,6 +19,7 @@ import java.util.List;
 import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 import app.irvanyale.com.moviecatalogue.ui.detail.DetailActivity;
+import app.irvanyale.com.moviecatalogue.util.Const;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
@@ -70,11 +71,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
                 intent.putExtra(DetailActivity.EXTRA_ID, movieEntity.getMovieId());
+                intent.putExtra(DetailActivity.EXTRA_TYPE, Const.TYPE_MOVIE);
                 itemView.getContext().startActivity(intent);
             });
 
             Glide.with(itemView.getContext())
-                    .load(movieEntity.getImagePath())
+                    .load(movieEntity.getImage())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(imgPoster);
         }
