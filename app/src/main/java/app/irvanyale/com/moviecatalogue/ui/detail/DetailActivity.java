@@ -16,6 +16,7 @@ import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
 import app.irvanyale.com.moviecatalogue.util.Const;
+import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -42,6 +43,8 @@ public class DetailActivity extends AppCompatActivity {
         textDate = findViewById(R.id.text_date);
         textDescription = findViewById(R.id.text_description);
         tvVote = findViewById(R.id.tv_vote);
+
+        MyIdlingResource.increment();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -82,6 +85,10 @@ public class DetailActivity extends AppCompatActivity {
 
                 populateData(title, date, desc, vote, poster);
             }
+        }
+
+        if (!MyIdlingResource.getIdlingResource().isIdleNow()) {
+            MyIdlingResource.decrement();
         }
     }
 

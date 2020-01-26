@@ -2,6 +2,9 @@ package app.irvanyale.com.moviecatalogue.ui.movie;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,15 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-
 import java.util.List;
 
 import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
+import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +48,8 @@ public class MovieFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        MyIdlingResource.increment();
+
         if (getActivity() != null) {
             MovieViewModel movieViewModel =
                     new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
@@ -62,6 +63,10 @@ public class MovieFragment extends Fragment {
             rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
             rvMovie.setHasFixedSize(true);
             rvMovie.setAdapter(movieAdapter);
+        }
+
+        if (!MyIdlingResource.getIdlingResource().isIdleNow()) {
+            MyIdlingResource.decrement();
         }
     }
 }

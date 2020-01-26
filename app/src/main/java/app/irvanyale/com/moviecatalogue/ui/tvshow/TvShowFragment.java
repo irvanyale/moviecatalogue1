@@ -18,6 +18,7 @@ import java.util.List;
 
 import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
+import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +49,8 @@ public class TvShowFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        MyIdlingResource.increment();
+
         if (getActivity() != null) {
             TvShowViewModel tvShowViewModel =
                     new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
@@ -61,6 +64,10 @@ public class TvShowFragment extends Fragment {
             rvTvShow.setLayoutManager(new LinearLayoutManager(getContext()));
             rvTvShow.setHasFixedSize(true);
             rvTvShow.setAdapter(tvShowAdapter);
+        }
+
+        if (!MyIdlingResource.getIdlingResource().isIdleNow()) {
+            MyIdlingResource.decrement();
         }
     }
 }
