@@ -2,12 +2,9 @@ package app.irvanyale.com.moviecatalogue.ui.home;
 
 import android.content.Context;
 
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.IdlingRegistry;
-import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.contrib.RecyclerViewActions;
-import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.After;
